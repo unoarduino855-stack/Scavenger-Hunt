@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPS MathQuest — Find. Solve. Score.</title>
+<style>
+:root{--navy:#1b3f73;--gold:#e0ae2e;--ink:#1c4076;--muted:#7188aa;--bg:#eaf5fb}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:radial-gradient(circle at 12% 15%,#c8e8f4,transparent 32%),radial-gradient(circle at 90% 45%,#e5e2ff,transparent 35%),#edf6fb}
+header{background:var(--navy);color:white;padding:16px 2.3%;display:flex;align-items:center;justify-content:space-between;gap:16px;box-shadow:0 5px 18px #16375a22;position:sticky;top:0;z-index:2}
+.brand{display:flex;align-items:center;gap:15px}.logo{width:70px;height:70px;border-radius:22px;background:linear-gradient(135deg,#f6d35d,#dca91d);display:grid;place-items:center;color:#1d3d6d;font-weight:900;font-size:24px;box-shadow:0 5px 12px #071f4522}
+h1{font-size:27px;margin:0;font-weight:850;letter-spacing:-.5px}.tagline{margin-top:6px;color:#dce9ff;font-size:15px}.student-pill{border-radius:50px;background:#ffffff20;padding:14px 19px;font-weight:800;white-space:nowrap}
+main{max-width:1600px;margin:auto;padding:34px 2.2% 55px}.top-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(430px,1.15fr);gap:24px;margin-bottom:24px}
+.welcome,.panel{background:#ffffffed;border:1px solid #ffffff;border-radius:28px;box-shadow:0 12px 35px #173d6c0b}.welcome{padding:30px;min-height:235px;display:flex;flex-direction:column;justify-content:center}.chip{background:#e9f3ff;border-radius:40px;padding:11px 16px;font-size:14px;font-weight:800;align-self:flex-start}.welcome h2{font-size:36px;letter-spacing:-.8px;margin:20px 0 12px}.welcome p{font-size:19px;line-height:1.55;color:var(--muted);margin:0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{border-radius:23px;color:white;padding:22px 20px;display:flex;flex-direction:column;justify-content:space-between;min-height:235px;overflow:hidden;position:relative}.stat:after{content:"";position:absolute;width:100px;height:100px;border:2px solid #ffffff20;border-radius:24px;right:-30px;top:40px;transform:rotate(25deg)}.stat span{font-weight:850;font-size:15px;position:relative;z-index:1}.stat strong{font-size:37px;line-height:1;position:relative;z-index:1}.teal{background:linear-gradient(145deg,#13b7c2,#009cae)}.coral{background:linear-gradient(145deg,#ff7054,#f14c30)}.purple{background:linear-gradient(145deg,#8950fa,#6732e7)}
+.content-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,1fr);gap:24px;align-items:start}.panel{padding:28px}.panel h2{font-size:25px;margin:0 0 25px;letter-spacing:-.4px}.sub{font-size:18px;color:var(--muted);line-height:1.5;margin:-4px 0 20px}
+form{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:17px}.code-input{width:265px;max-width:100%;border:2px solid #04baca;border-radius:18px;padding:17px 20px;text-align:center;font-size:25px;letter-spacing:7px;text-transform:uppercase;font-weight:850;color:var(--ink);outline:none;box-shadow:0 0 0 5px #0bbbc21b}.code-input:focus{box-shadow:0 0 0 6px #0bbbc233}
+button{border:0;border-radius:17px;background:var(--gold);color:#193c70;padding:16px 22px;font-weight:850;font-size:15px;cursor:pointer;transition:transform .15s,filter .15s}button:hover{filter:brightness(1.04);transform:translateY(-1px)}button:active{transform:translateY(1px)}.notice{padding:17px 19px;border-radius:17px;background:#fff4dc;color:#a16800;font-weight:800;margin:18px 0 16px;line-height:1.45}.notice.good{background:#e2f9ee;color:#14764e}.notice.bad{background:#ffe8e5;color:#a53d2c}.rules{color:var(--muted);line-height:1.65}.rules b{color:#6e82a0}
+.leader-head{display:flex;align-items:center;gap:12px;margin-bottom:3px}.leader-head h2{margin:0}.leader-sub{color:var(--muted);font-size:18px;margin:6px 0 16px}.table-wrap{overflow:auto;border:1px solid #e0e9f4;border-radius:22px}table{width:100%;border-collapse:collapse;min-width:460px;font-size:15px}thead{background:#f1f6fd}th,td{text-align:left;padding:14px 13px;border-bottom:1px solid #e9eff7}th{font-weight:850}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#f8fbff}td:first-child,td:last-child{font-weight:850}td:last-child{font-variant-numeric:tabular-nums}
+.challenge{display:none;margin-top:20px;padding:22px;border-radius:20px;background:#f3f7ff;border:1px solid #dce8fa}.challenge.show{display:block}.challenge h3{margin:0 0 12px;font-size:21px}.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.answers button{background:white;border:2px solid #d9e5f6;text-align:left;color:var(--ink)}.answers button:hover{border-color:#18b8c4}.small{font-size:13px;color:var(--muted);margin-top:18px}
+.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:24px}.mini-card{background:#fffE;border:1px solid white;border-radius:24px;padding:24px}.mini-card h2{margin:0 0 10px}.mini-card p{color:var(--muted);line-height:1.6}.poster-list{display:flex;gap:10px;flex-wrap:wrap}.poster{background:#f1f6ff;border:1px solid #dce7f7;border-radius:14px;padding:12px 14px;font-weight:800}.poster code{color:#a06d00;font-size:16px;margin-right:8px}
+footer{text-align:center;color:#8093ad;padding:28px 12px 0;font-size:13px}
+@media(max-width:1000px){.top-grid,.content-grid{grid-template-columns:1fr}.stats{min-height:170px}.stat{min-height:170px}.welcome{min-height:210px}.bottom-grid{grid-template-columns:1fr}}
+.print-only{display:none}
+@media print{
+  body{background:white!important;color:#111!important}
+  header,main>*:not(#printSheet),#printSheet .print-instructions{display:none!important}
+  #printSheet{display:block!important;padding:10mm}
+  .print-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8mm}
+  .print-card{height:55mm;border:2px dashed #333;border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;page-break-inside:avoid}
+  .print-card .print-brand{font-size:12px;letter-spacing:2px;font-weight:800}
+  .print-card .print-code{font-size:36px;letter-spacing:8px;font-weight:900;margin:8px}
+  .print-card .print-hint{font-size:12px}
+}
+@media(max-width:580px){header{padding:12px 4%;align-items:flex-start}.logo{width:52px;height:52px;border-radius:16px;font-size:19px}.brand{gap:10px}h1{font-size:20px}.tagline{font-size:12px}.student-pill{font-size:11px;padding:10px 12px;white-space:normal;text-align:center}main{padding:20px 4% 40px}.welcome,.panel{padding:22px;border-radius:22px}.welcome h2{font-size:29px}.welcome p,.sub,.leader-sub{font-size:16px}.stats{gap:8px}.stat{padding:15px 12px;min-height:140px;border-radius:17px}.stat span{font-size:12px}.stat strong{font-size:29px}.panel h2{font-size:22px}.code-input{width:100%}form button{width:100%}.answers{grid-template-columns:1fr}th,td{padding:12px 10px}}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand"><div class="logo">MQ</div><div><h1>IPS MathQuest</h1><div class="tagline">Find. Solve. Score. • Math Week</div></div></div>
+ <div class="student-pill" id="studentPill">Student • Grade 4</div>
+</header>
+<main>
+ <section class="top-grid">
+  <div class="welcome"><div class="chip">🎉 Celebrating Math Week</div><h2 id="welcomeTitle">Welcome, Math Explorer!</h2><p id="welcomeText">Grade 4. Find posters, solve the challenges and climb the leaderboard.</p></div>
+  <div class="stats">
+   <div class="stat teal"><span>Points</span><strong id="points">0</strong></div>
+   <div class="stat coral"><span>Codes Found</span><strong id="posters">0</strong></div>
+   <div class="stat purple"><span>Codes Remaining</span><strong id="correct">0</strong></div>
+  </div>
+ </section>
+ <section class="content-grid">
+  <div class="panel">
+   <h2>Enter Poster Code</h2><p class="sub">Find the 16 hidden posters around the classroom. Enter each 3-character code to collect its points!</p>
+   <form id="codeForm"><input id="codeInput" class="code-input" maxlength="3" minlength="3" placeholder="A B C" aria-label="Three character poster code" autocomplete="off" required><button type="submit">Submit Code</button></form>
+   <div id="notice" class="notice" role="status">Dead end! This poster is a decoy. Keep hunting!</div>
+   <div class="rules">Each hidden code is worth <b>1 point or 5 points</b>. Every code can only be entered once.<br><span class="small">Ask your teacher to print the 16 code cards below and hide them around the classroom.</span></div>
+   <div id="challenge" class="challenge"><h3 id="questionTitle">Math challenge</h3><p id="questionText"></p><div id="answers" class="answers"></div><p id="answerFeedback" aria-live="polite"></p></div>
+  </div>
+  <div class="panel">
+   <div class="leader-head"><span style="font-size:26px">🏆</span><h2>School Leaderboard</h2></div>
+   <p class="leader-sub">See who's leading MathQuest across IPS.</p>
+   <div class="table-wrap"><table><thead><tr><th>#</th><th>Student</th><th>Homeroom</th><th>Grade</th><th>Points</th></tr></thead><tbody id="leaderRows"></tbody></table></div>
+   <p class="small">Example leaderboard data. Your demo score appears here while you play.</p>
+  </div>
+ </section>
+ <section class="bottom-grid">
+  <div class="mini-card"><h2>🧭 Your MathQuest Mission</h2><p>Explore your school to find MathQuest posters. Enter each code, solve its maths challenge, and collect points. Try to beat your personal best!</p><button id="resetBtn" type="button">Reset Demo Progress</button></div>
+  <div class="mini-card"><h2>🖨️ Classroom Scavenger Hunt</h2><p>Print these 16 code cards, cut them out, and hide them around the classroom. Keep the point values hidden from students if you want a surprise!</p><button id="printBtn" type="button">Print 16 Code Cards</button><div class="poster-list" id="codePreview" style="margin-top:14px"></div></div>
+ </section>
+ <footer>IPS MathQuest • Demo website for Math Week • Progress is saved in this browser</footer>
+</main>
+<script>
+const posterCodes = {
+  "MAP":5, "SUN":1, "FOX":1, "BOX":5,
+  "RED":1, "SKY":5, "CAT":1, "PEN":1,
+  "OWL":5, "TOP":1, "FUN":5, "KEY":1,
+  "BEE":1, "ACE":5, "MIX":1, "JET":5
+};
+const sampleLeaders=[
+ {name:"Aisha Arsalan",room:"8G3",grade:8,points:226},
+ {name:"Fajir Bu Khamsein",room:"11G3",grade:11,points:204},
+ {name:"Yufan Wang",room:"8G1",grade:8,points:149},
+ {name:"Zain Almarzooq",room:"9G2",grade:9,points:130},
+ {name:"Mariam Hassan",room:"6B1",grade:6,points:117},
+ {name:"Omar (You)",room:"4B2",grade:4,points:0}
+];
+let state={points:0,posters:[],correct:0,active:null};
+try{const saved=JSON.parse(localStorage.getItem("mathquest-demo"));if(saved&&Array.isArray(saved.posters))state={...state,...saved}}catch(e){}
+const $=id=>document.getElementById(id);
+function save(){try{localStorage.setItem("mathquest-demo",JSON.stringify({points:state.points,posters:state.posters,correct:state.correct}))}catch(e){}}
+function render(){
+ $("points").textContent=state.points;$("posters").textContent=state.posters.length;$("correct").textContent=16-state.posters.length;
+ const rows=[...sampleLeaders.filter(x=>x.name!=="Omar (You)"),{name:"Omar (You)",room:"4B2",grade:4,points:state.points}].sort((a,b)=>b.points-a.points);
+ $("leaderRows").innerHTML=rows.map((r,i)=>`<tr ${r.name==="Omar (You)"?'style="background:#fff9e9"':''}><td>${i+1}</td><td>${r.name}</td><td>${r.room}</td><td>${r.grade}</td><td>${r.points}</td></tr>`).join("");
+}
+function notice(msg,type=""){const n=$("notice");n.textContent=msg;n.className="notice"+(type?" "+type:"")}
+$("codeForm").addEventListener("submit",e=>{
+ e.preventDefault();const code=$("codeInput").value.trim().toUpperCase();$("codeInput").value="";
+ if(!Object.prototype.hasOwnProperty.call(posterCodes,code)){
+   notice("Code not found. Keep searching around the classroom!","bad");return;
+ }
+ if(state.posters.includes(code)){notice("You already found this code. Each poster only counts once!","");return}
+ const earned=posterCodes[code];state.posters.push(code);state.points+=earned;save();render();
+ $("challenge").classList.remove("show");
+ notice(`🎉 Code ${code} found! You earned ${earned} ${earned===1?"point":"points"}! Keep hunting for the other posters.`, "good");
+});
+const printCodes = [
+ ["MAP",5],["SUN",1],["FOX",1],["BOX",5],
+ ["RED",1],["SKY",5],["CAT",1],["PEN",1],
+ ["OWL",5],["TOP",1],["FUN",5],["KEY",1],
+ ["BEE",1],["ACE",5],["MIX",1],["JET",5]
+];
+$("codePreview").innerHTML=printCodes.map(([code,pts])=>`<div class="poster"><code>${code}</code> ${pts} ${pts===1?"point":"points"}</div>`).join("");
+$("printBtn").addEventListener("click",()=>{
+ let old=document.getElementById("printSheet");if(old)old.remove();
+ const sheet=document.createElement("section");sheet.id="printSheet";sheet.className="print-only";
+ sheet.innerHTML='<div class="print-instructions"><h1>IPS MathQuest — Classroom Scavenger Hunt</h1><p>Print, cut out each card, and hide the cards around the classroom. The point values are shown for teacher setup; to keep them secret, print without values or cover the small value line.</p></div><div class="print-grid">'+printCodes.map(([code,pts])=>`<div class="print-card"><div class="print-brand">IPS MATHQUEST • FIND. SOLVE. SCORE.</div><div class="print-code">${code}</div><div class="print-hint">Enter this code on the MathQuest website</div><div class="print-hint">Teacher value: ${pts} ${pts===1?"point":"points"}</div></div>`).join("")+'</div>';
+ document.body.appendChild(sheet);window.print();
+});
+$("resetBtn").addEventListener("click",()=>{if(confirm("Reset your demo points and found posters?")){state={points:0,posters:[],correct:0,active:null};save();render();$("challenge").classList.remove("show");notice("Progress reset. Ready for a fresh MathQuest!","good")}});
+render();
+</script>
+</body>
+</html>
